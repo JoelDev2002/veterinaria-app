@@ -11,10 +11,12 @@ export default function Buscador({value, onChangeText}: BuscadorProps) {
   return (
     <Searchbar
       placeholder="Buscar Solicitudes..."
+      placeholderTextColor="#666"
+
       onChangeText={onChangeText}
       value={value}
       style={styles.buscador}
-
+      inputStyle={{color:"#000"}}
     />
   );
 }

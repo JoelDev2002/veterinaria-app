@@ -75,6 +75,8 @@ const CreateScreen= ({navigation}: createScreenProps ) => {
       <TextInput
       mode="outlined"
       placeholder="Ej. Juan Quispe"
+      placeholderTextColor="#666"
+      textColor="#000"
       value={form.clienteNombre}
       onChangeText={(v)=>handleChange("clienteNombre", v)}
       outlineColor="#ccc"
@@ -90,7 +92,9 @@ const CreateScreen= ({navigation}: createScreenProps ) => {
       <Text style={styles.label}>TELÉFONO</Text>
       <TextInput
         mode="outlined"
-        placeholder="+51 987 654 321"
+        placeholder="987 654 321"
+        placeholderTextColor="#666"
+        textColor="#000"
         value={form.telefono}
         onChangeText={(v) => handleChange("telefono", v)}
         keyboardType="phone-pad"
@@ -107,6 +111,8 @@ const CreateScreen= ({navigation}: createScreenProps ) => {
       <TextInput
         mode="outlined"
         placeholder="Ej. firulais"
+        placeholderTextColor="#666"
+        textColor="#000"
         value={form.mascotaNombre}
         onChangeText={(v) => handleChange("mascotaNombre", v)}
         outlineColor="#ccc"
@@ -156,6 +162,7 @@ const CreateScreen= ({navigation}: createScreenProps ) => {
       <TextInput
         mode="outlined"
         placeholder="Detalles de la condición o motivo de la visita..."
+        placeholderTextColor="#666"
         value={form.descripcion}
         onChangeText={(v) => handleChange("descripcion", v)}
         multiline
@@ -171,7 +178,7 @@ const CreateScreen= ({navigation}: createScreenProps ) => {
         onPress={handleGuardar}
         style={styles.botonGuardar}
         buttonColor="#1d7a8a"
-        labelStyle={{ fontSize: 17, fontWeight: "bold" }}
+        labelStyle={{ fontSize: 17, fontWeight: "bold" , color:"#fff"}}
       >
         Guardar solicitud
       </Button>
@@ -240,7 +247,7 @@ const styles= StyleSheet.create({
   },
   botonGuardar: {
     marginTop: 30,
-    borderRadius: 10,
+    borderRadius: 15,
     paddingVertical: 4,
   },
   error: {

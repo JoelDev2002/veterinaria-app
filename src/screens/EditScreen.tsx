@@ -6,7 +6,7 @@ import { useSolicitudes } from "../context/SolicitudContext";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { Button, Dialog, Portal, Snackbar, TextInput } from "react-native-paper";
 import { useState } from "react";
-import { COLOR_ESTADO, COLOR_PRIORIDAD, ESTADOS, PRIORIDADES } from "../utils/constants";
+import { COLOR_ESTADO, COLOR_PRIORIDAD, ESTADOS, ESTADOS_LABELS, PRIORIDADES, PRIORIDADES_LABELS } from "../utils/constants";
 
 type EditScreenProps = NativeStackScreenProps<Pantallas, "Edit">
 export default function EditScreen({route, navigation}: EditScreenProps){
@@ -122,7 +122,7 @@ export default function EditScreen({route, navigation}: EditScreenProps){
                 styles.chipTexto,
                 form.estado === e && { color: "#fff", fontWeight: "bold" },
               ]}>
-                {e}
+                {ESTADOS_LABELS[e]}
               </Text>
             </TouchableOpacity>
           ))}
@@ -150,7 +150,7 @@ export default function EditScreen({route, navigation}: EditScreenProps){
                   styles.chipTexto,
                   form.prioridad === p && { color: "#fff", fontWeight: "bold" },
                 ]}>
-                  {p}
+                  {PRIORIDADES_LABELS[p]}
                 </Text>
               </View>
             </TouchableOpacity>
@@ -171,6 +171,7 @@ export default function EditScreen({route, navigation}: EditScreenProps){
           style={styles.input}
           placeholder="Describe el motivo de la atención..."
           placeholderTextColor="#aaa"
+          textColor="#000"
         />
       </View>
 

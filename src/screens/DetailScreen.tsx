@@ -4,7 +4,7 @@ import { Pantallas } from "../navigation/AppNavigator";
 import { useSolicitudes } from "../context/SolicitudContext";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { Chip } from "react-native-paper";
-import { COLOR_ESTADO, COLOR_PRIORIDAD, ICONO_SERVICIO } from "../utils/constants";
+import { COLOR_ESTADO, COLOR_PRIORIDAD, ESTADOS_LABELS, ICONO_SERVICIO } from "../utils/constants";
 import { useState } from "react";
 
 
@@ -34,9 +34,8 @@ const DetailScreen= ({route, navigation}: detailScreenProps) => {
           compact
           style={{ backgroundColor: COLOR_ESTADO[solicitud.estado] }}
           textStyle={{ color: "#fff", fontWeight: "bold" }}
-          icon="chevron-down"
         >
-          {solicitud.estado}
+          {ESTADOS_LABELS[solicitud.estado]}
         </Chip>
       </View>
 
@@ -65,11 +64,11 @@ const DetailScreen= ({route, navigation}: detailScreenProps) => {
         <View style={styles.contenedorInfo}>
           <View >
             <Text style={styles.minilabel}>MASCOTA</Text>
-            <Text>{solicitud.mascotaNombre}</Text>
+            <Text style={styles.textoDetalle}>  {solicitud.mascotaNombre}</Text>
           </View>
           <View>
             <Text style={styles.minilabel}>CLIENTE</Text>
-            <Text>{solicitud.clienteNombre}</Text>
+            <Text style={styles.textoDetalle}>{solicitud.clienteNombre}</Text>
           </View>
         </View>
         <View >
@@ -80,7 +79,7 @@ const DetailScreen= ({route, navigation}: detailScreenProps) => {
             size={20}
             color="#888"
             />
-            <Text>+51 {solicitud.telefono}</Text>
+            <Text style={styles.textoDetalle}>+51 {solicitud.telefono}</Text>
           </View>
         </View>
       </View>
@@ -88,7 +87,7 @@ const DetailScreen= ({route, navigation}: detailScreenProps) => {
       <View style={styles.informacionContenedor}>
         <View style={styles.titulo}>
           <MaterialCommunityIcons
-          name="medical-bag"
+          name="clipboard-text"
           size={25}
           color="#356668"
           />
@@ -99,7 +98,8 @@ const DetailScreen= ({route, navigation}: detailScreenProps) => {
           <View style={styles.tipoServicio}>
             <MaterialCommunityIcons
             name={ICONO_SERVICIO[solicitud.tipoServicio]}
-            size={25}
+            color="#000"
+            size={20}
             />
             <Text style={styles.texto}>{solicitud.tipoServicio}</Text>
           </View>
@@ -115,7 +115,7 @@ const DetailScreen= ({route, navigation}: detailScreenProps) => {
             <Text style={styles.minilabel}>DESCRIPCIÓN</Text>
 
             <View style={styles.descripcion}>
-              <Text>{solicitud.descripcion}</Text>
+              <Text style={{color:"#000"}}>{solicitud.descripcion}</Text>
             </View>
           </View>
         </View>
@@ -240,5 +240,9 @@ const styles = StyleSheet.create({
     justifyContent:"center",
     alignItems:"center",
     backgroundColor:"#000",
+  },
+  textoDetalle:{
+    color:"#000",
+    fontWeight:"bold",
   }
 });

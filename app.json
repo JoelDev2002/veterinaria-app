@@ -4,28 +4,28 @@
     "slug": "veterinaria-app",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon-vet.png",
+    "icon": "./assets/vet-app.png",
     "userInterfaceStyle": "light",
     "newArchEnabled": false,
     "splash": {
-      "image": "./assets/splash-icon.png",
+      "image": "./assets/logo-vet.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#87DACA"
     },
     "ios": {
       "supportsTablet": true
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/icon-vet.png",
-        "backgroundColor": "#ffffff"
+        "foregroundImage": "./assets/vet-app.png",
+        "backgroundColor": "#87DACA"
       },
       "edgeToEdgeEnabled": true,
       "predictiveBackGestureEnabled": false,
       "package": "com.joelmch.veterinariaapp"
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/vet-app.png"
     },
     "extra": {
       "eas": {

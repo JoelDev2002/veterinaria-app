@@ -2,15 +2,15 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { StyleSheet, Text, View } from "react-native";
 import { Card, Chip } from "react-native-paper";
 import { Solicitud } from "../models/Solicitud";
-import { COLOR_ESTADO, COLOR_PRIORIDAD, ICONO_SERVICIO } from "../utils/constants";
+import { COLOR_ESTADO, COLOR_PRIORIDAD, ESTADOS_LABELS, ICONO_SERVICIO, PRIORIDADES_LABELS } from "../utils/constants";
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import { RootStackParamList } from "../navigation/AppNavigator";
+import { Pantallas } from "../navigation/AppNavigator";
 
 
 export default function CardSolicitud ({solicitud}: {solicitud: Solicitud}) {
 
-  const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
+  const navigation = useNavigation<NativeStackNavigationProp<Pantallas>>();
   return(
     <>
       <Card
@@ -24,8 +24,8 @@ export default function CardSolicitud ({solicitud}: {solicitud: Solicitud}) {
             {solicitud.clienteNombre}
           </Text>
 
-          <Chip compact style={{backgroundColor:COLOR_ESTADO[solicitud.estado]}}>
-            {solicitud.estado}
+          <Chip compact textStyle={{color: "#fff",fontWeight:"bold"}} style={{backgroundColor:COLOR_ESTADO[solicitud.estado]}}>
+            {ESTADOS_LABELS[solicitud.estado]}
           </Chip>
         </View>
 
@@ -63,8 +63,8 @@ export default function CardSolicitud ({solicitud}: {solicitud: Solicitud}) {
           <View style={styles.estado}>
             <Text style={{
               fontSize:12,
-              // color: COLOR_PRIORIDAD[solicitud.prioridad]
-            }}>{solicitud.prioridad}</Text>
+              color: COLOR_PRIORIDAD[solicitud.prioridad]
+            }}>{PRIORIDADES_LABELS[solicitud.prioridad]}</Text>
 
             <View style={[
               styles.punto,
@@ -97,6 +97,7 @@ const styles = StyleSheet.create({
 
   nombre: {
     fontWeight: "bold",
+    color: "#000"
   },
 
   row: {

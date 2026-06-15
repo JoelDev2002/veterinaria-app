@@ -2,7 +2,7 @@ import { FlatList, ScrollView, StyleSheet, Text, View } from "react-native";
 import CardSolicitud from "../components/CardSolicitud";
 import Button from "../components/Button";
 import Buscador from "../components/Buscador";
-import { FILTROS_ESTADO } from "../utils/constants";
+import { ESTADOS_LABELS, FILTROS_ESTADO } from "../utils/constants";
 import { useSolicitudes } from "../context/SolicitudContext";
 import { useLayoutEffect, useState } from "react";
 import { IconButton } from "react-native-paper";
@@ -59,7 +59,7 @@ const HomeScreen= ({navigation}: HomeScreenProps) => {
             FILTROS_ESTADO.map(estado=>(
               <Button
               key={estado}
-              texto={estado}
+              texto={ESTADOS_LABELS[estado]}
               activo={filtroActivo === estado}
               onPress={()=>setFiltroActivo(estado)}
               />

@@ -9,12 +9,31 @@ export const FILTROS_ESTADO =[
   ...ESTADOS
 ]
 
+export const ESTADOS_LABELS : Record<string,string> = {
+  'TODOS':'TODOS',
+  [Estado.PENDIENTE]:'PENDIENTE',
+  [Estado.EN_ATENCION]:'EN ATENCIÓN',
+  [Estado.FINALIZADO]:'FINALIZADO',
+}
+
 export const PRIORIDADES = Object.values(Prioridad);
 // → ['BAJA', 'MEDIA', 'ALTA']
+
+export const PRIORIDADES_LABELS : Record<Prioridad,string> = {
+  [Prioridad.BAJA]:'BAJA',
+  [Prioridad.MEDIA]:'MEDIA',
+  [Prioridad.ALTA]:'ALTA',
+}
 
 export const TIPOS_SERVICIO = Object.values(TipoServicio);
 // → ['Consulta', 'Vacunación', 'Emergencia', 'Grooming']
 
+export const TIPOS_SERVICIO_LABELS: Record<string,string> = {
+  [TipoServicio.CONSULTA]:'Consulta',
+  [TipoServicio.VACUNACION]:'Vacunación',
+  [TipoServicio.EMERGENCIA]:'Emergencia',
+  [TipoServicio.GROOMING]:'Grooming',
+}
 
 export const COLOR_ESTADO: Record<Estado, string> = {
   [Estado.PENDIENTE]: '#F59E0B',
