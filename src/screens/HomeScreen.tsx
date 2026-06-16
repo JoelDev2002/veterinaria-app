@@ -27,7 +27,7 @@ const HomeScreen= ({navigation}: HomeScreenProps) => {
           />
         )
     })
-  })
+  },[navigation])
 
 
   const {solicitudes}= useSolicitudes();

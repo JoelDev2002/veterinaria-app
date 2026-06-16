@@ -4,12 +4,14 @@ import { Pantallas } from "../navigation/AppNavigator";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { useSolicitudes } from "../context/SolicitudContext";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import { Button, Dialog, Portal, Snackbar, TextInput } from "react-native-paper";
+import { TextInput } from "react-native-paper";
 import { useState } from "react";
 import { COLOR_ESTADO, COLOR_PRIORIDAD, ESTADOS, ESTADOS_LABELS, PRIORIDADES, PRIORIDADES_LABELS } from "../utils/constants";
 
 type EditScreenProps = NativeStackScreenProps<Pantallas, "Edit">
+
 export default function EditScreen({route, navigation}: EditScreenProps){
+
   const {solicitudId} = route.params
 
   const {solicitudes, editar, eliminar} =useSolicitudes() 
@@ -64,9 +66,8 @@ export default function EditScreen({route, navigation}: EditScreenProps){
     )
   }
 
-  const [visible,setVisible] = useState(true)
   return(
-       <ScrollView style={styles.contenedor}>
+      <ScrollView style={styles.contenedor}>
 
       {/* HEADER INFO — solo lectura */}
       <View style={styles.headerRow}>
