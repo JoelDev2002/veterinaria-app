@@ -7,6 +7,9 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { TextInput } from "react-native-paper";
 import { useState } from "react";
 import { COLOR_ESTADO, COLOR_PRIORIDAD, ESTADOS, ESTADOS_LABELS, PRIORIDADES, PRIORIDADES_LABELS } from "../utils/constants";
+import { editarSolicitud } from "../usecases/EditarSolicitud";
+import { puedeEliminarSolicitud } from "../usecases/EliminarSolicitud";
+import { validarDescripcion } from "../utils/validators";
 
 type EditScreenProps = NativeStackScreenProps<Pantallas, "Edit">
 
@@ -27,6 +30,11 @@ export default function EditScreen({route, navigation}: EditScreenProps){
   })
 
   const handleGuardar = () => {
+      const errorDescripcion=validarDescripcion(form.descripcion)
+      if(errorDescripcion){
+        Alert.alert("Error",errorDescripcion)
+      }
+
     Alert.alert(
       "Guardar cambios",
       "¿Deseas guardar los cambios?",
@@ -38,7 +46,8 @@ export default function EditScreen({route, navigation}: EditScreenProps){
         {
           text: "Guardar",
           onPress: () => {
-            editar({ ...solicitud, ...form });
+            const solicitudEditada= editarSolicitud(solicitud,form)
+            editar(solicitudEditada);
             navigation.goBack();
           },
         },
@@ -47,6 +56,10 @@ export default function EditScreen({route, navigation}: EditScreenProps){
   };
 
   const handleEliminar=()=>{
+    if(puedeEliminarSolicitud(solicitud)){
+      Alert.alert("No permitido","No puedes eliminar una solicitud con estado 'en atención'")
+      return
+    }
     Alert.alert(
       "Eliminar Solicitud",
       "¿Deseas eliminar la solicitud permanentemente?",
