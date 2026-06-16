@@ -12,7 +12,6 @@ export default function CardSolicitud ({solicitud}: {solicitud: Solicitud}) {
 
   const navigation = useNavigation<NativeStackNavigationProp<Pantallas>>();
   return(
-    <>
       <Card
       style={styles.card}
       elevation={2}
@@ -74,7 +73,6 @@ export default function CardSolicitud ({solicitud}: {solicitud: Solicitud}) {
         </View>
       </Card.Content>
     </Card>
-    </>
   )
 
 }

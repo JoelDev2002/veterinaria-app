@@ -16,13 +16,7 @@ const DetailScreen= ({route, navigation}: detailScreenProps) => {
 
 
   const solicitud = solicitudes.find((s) => s.id === solicitudId);
-
-  const [formEdit, setFormEdit] = useState({
-    telefono: solicitud?.telefono,
-    estado: solicitud?.estado,
-    descripcion: solicitud?.descripcion
-  })
-
+  
   if (!solicitud) return <Text>No encontrada</Text>;
 
   return(

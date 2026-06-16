@@ -1,26 +1,19 @@
 import { useState } from "react";
 import { StyleSheet, Text, View, TouchableOpacity, ScrollView, KeyboardAvoidingView} from "react-native";
-import { Estado, Prioridad, Solicitud, TipoServicio } from "../models/Solicitud";
-import uuid from "react-native-uuid"
+import { Prioridad, TipoServicio } from "../models/Solicitud";
 import { Button, TextInput } from "react-native-paper";
 import { COLOR_PRIORIDAD, PRIORIDADES, TIPOS_SERVICIO } from "../utils/constants";
 import { Picker } from "@react-native-picker/picker";
 import { useSolicitudes } from "../context/SolicitudContext";
 import { Pantallas } from "../navigation/AppNavigator";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { validarNombre, validarTelefono } from "../utils/validators";
+import { validarDescripcion, validarMascota, validarNombre, validarSeleccion, validarTelefono } from "../utils/validators";
+import { crearSolicitud } from "../usecases/CrearSolicitud";
 
 
 type createScreenProps = NativeStackScreenProps<Pantallas, "Create">;
 
 const CreateScreen= ({navigation}: createScreenProps ) => {
-
-  const [errores, setErrores] =useState({
-    clienteNombre: null as string | null,
-    telefono: null as string | null,
-  })
-
-
 
   const {agregar} = useSolicitudes()
 
@@ -37,33 +30,45 @@ const CreateScreen= ({navigation}: createScreenProps ) => {
     setForm(prev => ({ ...prev, [campo]: valor }));
   };
 
+  const [errores, setErrores] =useState({
+    clienteNombre: null as string | null,
+    telefono: null as string | null,
+    mascotaNombre: null as string | null,
+    tipoServicio: null as string | null,
+    prioridad: null as string | null,
+    descripcion: null as string | null,
+  })
+
+
   const handleGuardar=()=>{
 
     const errorNombre = validarNombre(form.clienteNombre);
     const errorTelefono = validarTelefono(form.telefono);
+    const errorMascota = validarMascota(form.mascotaNombre);
+    const errorTipoServicio = validarSeleccion(form.tipoServicio, 'tipo de servicio');
+    const errorPrioridad = validarSeleccion(form.prioridad, 'prioridad');
+    const errorDescripcion = validarDescripcion(form.descripcion);
 
     setErrores({
       clienteNombre: errorNombre,
       telefono: errorTelefono,
+      mascotaNombre:errorMascota,
+      tipoServicio:errorTipoServicio,
+      prioridad:errorPrioridad,
+      descripcion:errorDescripcion,
     });
 
 
-    if (errorNombre || errorTelefono) return;
+    if (errorNombre || errorTelefono || errorMascota || errorTipoServicio || errorPrioridad || errorDescripcion) return;
 
-    const nuevaSolicitud: Solicitud={
-      id: uuid.v4() as string,
-      fechaRegistro: new Date().toLocaleString("es-PE",{
-      timeZone:"America/Lima"
-    }),
-      estado:Estado.PENDIENTE,
-      prioridad:form.prioridad as Prioridad,
-      tipoServicio:form.tipoServicio as TipoServicio,
-      clienteNombre:form.clienteNombre,
-      telefono: form.telefono,
+    const nuevaSolicitud = crearSolicitud({
+      clienteNombre: form.clienteNombre,
       mascotaNombre: form.mascotaNombre,
+      telefono: form.telefono,
+      tipoServicio: form.tipoServicio as TipoServicio,
+      prioridad: form.prioridad as Prioridad,
       descripcion: form.descripcion,
-
-    }
+    })
     agregar(nuevaSolicitud)
     navigation.goBack();
   }
@@ -118,7 +123,13 @@ const CreateScreen= ({navigation}: createScreenProps ) => {
         outlineColor="#ccc"
         activeOutlineColor="#a8dadc"
         style={styles.input}
+        error={!!errores.mascotaNombre}
       />
+      {
+        errores.mascotaNombre &&(
+          <Text style={styles.error}>{errores.mascotaNombre}</Text>
+        )
+      }
 
       <Text style={styles.label}>TIPO DE SERVICIO</Text>
       <View style={styles.pickerContenedor}>
@@ -135,6 +146,11 @@ const CreateScreen= ({navigation}: createScreenProps ) => {
           }
         </Picker>
       </View>
+      {
+        errores.tipoServicio &&(
+          <Text style={styles.error}>{errores.tipoServicio}</Text>
+        )
+      }
 
       <Text style={styles.label}>PRIORIDAD</Text>
       <View style={styles.prioridadContenedor}>
@@ -157,6 +173,11 @@ const CreateScreen= ({navigation}: createScreenProps ) => {
           </TouchableOpacity>
         ))}
       </View>
+      {
+        errores.prioridad &&(
+          <Text style={styles.error}>{errores.prioridad}</Text>
+        )
+      }
 
       <Text style={styles.label}>DESCRIPCIÓN</Text>
       <TextInput
@@ -170,7 +191,13 @@ const CreateScreen= ({navigation}: createScreenProps ) => {
         outlineColor="#ccc"
         activeOutlineColor="#a8dadc"
         style={[styles.input, styles.inputMultiline]}
+        error={!!errores.descripcion}
       />
+      {
+        errores.descripcion &&(
+          <Text style={styles.error}>{errores.descripcion}</Text>
+        )
+      }
 
       {/* BOTÓN GUARDAR */}
       <Button
