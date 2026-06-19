@@ -1,5 +1,6 @@
 import { Estado, Prioridad, TipoServicio } from "../models/Solicitud";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { Usuario } from "../models/Usuario";
 
 export const ESTADOS = Object.values(Estado);
 // → ['PENDIENTE', 'EN_ATENCION', 'FINALIZADO']
@@ -36,9 +37,9 @@ export const TIPOS_SERVICIO_LABELS: Record<string,string> = {
 }
 
 export const COLOR_ESTADO: Record<Estado, string> = {
-  [Estado.PENDIENTE]: '#F59E0B',
-  [Estado.EN_ATENCION]: '#3B82F6',
-  [Estado.FINALIZADO]: '#10B981',
+  [Estado.PENDIENTE]: '#C97A1A',
+  [Estado.EN_ATENCION]: '#2C6FB5',
+  [Estado.FINALIZADO]: '#0F6E56',
 };
 
 // Colores por prioridad
@@ -57,3 +58,15 @@ export const ICONO_SERVICIO: Record<TipoServicio, IconName> = {
   [TipoServicio.EMERGENCIA]: 'alert',
   [TipoServicio.GROOMING]: 'content-cut',
 };
+
+
+
+
+
+export const USUARIO_SIMULADO: Usuario = {
+  id: '1',
+  nombre: 'Usuario Demo',
+  email: 'admin@gmail.com',
+};
+
+export const PASSWORD_SIMULADA = '123456';
