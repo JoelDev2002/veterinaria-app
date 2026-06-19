@@ -27,3 +27,27 @@ export const validarSeleccion = (valor: string, campo: string): string | null =>
   if (!valor) return `Selecciona un ${campo}`;
   return null;
 };
+
+
+
+
+export const validarEmail =(valor : string): string | null =>{
+  if (!valor.trim()) return 'El email es obligatorio';
+  
+  const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if(!regex.test(valor.trim())) return 'el email no es valido';
+
+  return null  
+} 
+
+export const validarPassword = (valor:string): string | null =>{
+  if (!valor) return 'La contraseña es obligatoria';
+  if (valor.length < 6) return 'Mínimo 6 caracteres';
+  return null;
+}
+
+export const validarConfirmarPassword = (password: string,confirmarPassword: string): string | null => {
+  if (!confirmarPassword) return 'Confirmar contraseña es obligatorio';
+  if (password !== confirmarPassword) return 'Las contraseñas no coinciden';
+  return null;
+};
