@@ -1,77 +1,17 @@
-import { useState } from "react";
 import { StyleSheet, Text, View, TouchableOpacity, ScrollView, KeyboardAvoidingView} from "react-native";
-import { Prioridad, TipoServicio } from "../models/Solicitud";
 import { Button, TextInput } from "react-native-paper";
 import { COLOR_PRIORIDAD, PRIORIDADES, TIPOS_SERVICIO } from "../utils/constants";
 import { Picker } from "@react-native-picker/picker";
-import { useSolicitudes } from "../context/SolicitudContext";
 import { Pantallas } from "../navigation/AppNavigator";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { validarDescripcion, validarMascota, validarNombre, validarSeleccion, validarTelefono } from "../utils/validators";
-import { crearSolicitud } from "../usecases/CrearSolicitud";
+import { useCrearSolicitudForm } from "../hooks/useCrearSolicitudForm";
 
 
 type createScreenProps = NativeStackScreenProps<Pantallas, "Create">;
 
 const CreateScreen= ({navigation}: createScreenProps ) => {
 
-  const {agregar} = useSolicitudes()
-
-  const [form, setForm]= useState({
-    clienteNombre:"",
-    telefono:"",
-    mascotaNombre:"",
-    tipoServicio:"" as TipoServicio| "",
-    prioridad:"" as Prioridad |"",
-    descripcion:""
-  })
-
-  const handleChange = (campo: string, valor: string) => {
-    setForm(prev => ({ ...prev, [campo]: valor }));
-  };
-
-  const [errores, setErrores] =useState({
-    clienteNombre: null as string | null,
-    telefono: null as string | null,
-    mascotaNombre: null as string | null,
-    tipoServicio: null as string | null,
-    prioridad: null as string | null,
-    descripcion: null as string | null,
-  })
-
-
-  const handleGuardar=()=>{
-
-    const errorNombre = validarNombre(form.clienteNombre);
-    const errorTelefono = validarTelefono(form.telefono);
-    const errorMascota = validarMascota(form.mascotaNombre);
-    const errorTipoServicio = validarSeleccion(form.tipoServicio, 'tipo de servicio');
-    const errorPrioridad = validarSeleccion(form.prioridad, 'prioridad');
-    const errorDescripcion = validarDescripcion(form.descripcion);
-
-    setErrores({
-      clienteNombre: errorNombre,
-      telefono: errorTelefono,
-      mascotaNombre:errorMascota,
-      tipoServicio:errorTipoServicio,
-      prioridad:errorPrioridad,
-      descripcion:errorDescripcion,
-    });
-
-
-    if (errorNombre || errorTelefono || errorMascota || errorTipoServicio || errorPrioridad || errorDescripcion) return;
-
-    const nuevaSolicitud = crearSolicitud({
-      clienteNombre: form.clienteNombre,
-      mascotaNombre: form.mascotaNombre,
-      telefono: form.telefono,
-      tipoServicio: form.tipoServicio as TipoServicio,
-      prioridad: form.prioridad as Prioridad,
-      descripcion: form.descripcion,
-    })
-    agregar(nuevaSolicitud)
-    navigation.goBack();
-  }
+  const {form,errores,handleChange,handleGuardar} = useCrearSolicitudForm(()=>(navigation.navigate("Home")))
 
   return(
     <KeyboardAvoidingView style={{flex:1}} behavior="padding">
