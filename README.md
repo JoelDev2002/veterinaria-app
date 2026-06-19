@@ -186,9 +186,9 @@ src/
 
 ## 📸 Capturas de pantalla
 
-| Login | Register | Home |
-|---|---|---|
-| ![Login](./assets/screenshots/captura-login.png) | ![Register](./assets/screenshots/captura-register.png) | ![Home](./assets/screenshots/captura-home-bienvenida.png) |
+| Login | Register |
+|---|---|
+| ![Login](./assets/screenshots/captura-login.png) | ![Register](./assets/screenshots/captura-register.png) |
 
 | Listado | Crear | Detalle | Editar |
 |---|---|---|---|
