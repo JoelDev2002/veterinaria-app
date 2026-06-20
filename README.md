@@ -124,46 +124,56 @@ Al abrir la app se muestra la pantalla de **Login**. La autenticación es simula
 
 ## 🏗️ Arquitectura del proyecto
 
-El proyecto aplica bases de **Clean Architecture**, separando responsabilidades en capas bien definidas:
+El proyecto aplica **Clean Architecture** organizando el código en tres capas principales, separando responsabilidades según su naturaleza:
 
 ```
 src/
-├── models/        → Entidades puras sin dependencias externas (Solicitud, Usuario, enums)
-├── usecases/      → Lógica de negocio separada de la UI
-│   ├── CrearSolicitud.ts      → genera id, fecha y estado inicial
-│   ├── EditarSolicitud.ts     → aplica cambios sobre la solicitud original
-│   ├── EliminarSolicitud.ts   → valida que solo se eliminen solicitudes PENDIENTE
-│   ├── LoginUsuario.ts        → simula la autenticación
-│   └── RegisterUsuario.ts     → simula el registro de usuario
-├── hooks/         → Hooks personalizados que conectan UI con use cases
-│   ├── useLoginForm.ts            → estado, validación y submit del login
-│   ├── useRegisterForm.ts         → estado, validación y submit del registro
-│   ├── useCrearSolicitudForm.ts   → estado y validación del formulario de crear
-│   └── useEditarSolicitudForm.ts  → estado, validación, editar y eliminar
-├── context/       → Estado global con Context API + useReducer
-│   ├── SolicitudContext.tsx   → provee el estado a toda la app
-│   └── solicitudReducer.ts    → maneja las acciones AGREGAR, EDITAR, ELIMINAR, CAMBIAR_ESTADO
-├── screens/       → Pantallas que coordinan UI, hooks y navegación
-│   ├── LoginScreen.tsx
-│   ├── RegisterScreen.tsx
-│   ├── HomeScreen.tsx
-│   ├── CreateScreen.tsx
-│   ├── DetailScreen.tsx
-│   └── EditScreen.tsx
-├── components/    → Componentes reutilizables con Props y TypeScript
-├── navigation/    → Configuración de navegación entre pantallas
-└── utils/
-    ├── constants.ts   → colores, iconos, labels centralizados
-    └── validators.ts  → validaciones reutilizables independientes de la UI
+├── 📁domain/                    → Lógica de negocio pura, sin dependencias de React ni frameworks
+│   ├── 📁models/
+│   │   ├── Solicitud.ts       → entidad y enums (Estado, Prioridad, TipoServicio)
+│   │   └── Usuario.ts         → entidad de usuario y credenciales
+│   └── 📁usecases/
+│       ├── CrearSolicitud.ts      → genera id, fecha y estado inicial
+│       ├── EditarSolicitud.ts     → aplica cambios sobre la solicitud original
+│       ├── EliminarSolicitud.ts   → valida que solo se eliminen solicitudes PENDIENTE
+│       ├── LoginUsuario.ts        → simula la autenticación
+│       └── RegisterUsuario.ts     → simula el registro de usuario
+│
+├── 📁infrastructure/            → Conecta el dominio con React: estado, hooks y utilidades
+│   ├── 📁context/
+│   │   ├── SolicitudContext.tsx   → provee el estado global a toda la app
+│   │   └── solicitudReducer.ts    → maneja AGREGAR, EDITAR, ELIMINAR, CAMBIAR_ESTADO
+│   ├── 📁hooks/
+│   │   ├── useLoginForm.ts            → estado, validación y submit del login
+│   │   ├── useRegisterForm.ts         → estado, validación y submit del registro
+│   │   ├── useCrearSolicitudForm.ts   → estado y validación del formulario de crear
+│   │   └── useEditarSolicitudForm.ts  → estado, validación, editar y eliminar
+│   └── 📁utils/
+│       ├── constants.ts       → colores, iconos y labels centralizados
+│       └── validators.ts      → validaciones reutilizables independientes de la UI
+│
+└── 📁presentation/              → Todo lo visual: pantallas, componentes y navegación
+    ├── 📁screens/
+    │   ├── LoginScreen.tsx
+    │   ├── RegisterScreen.tsx
+    │   ├── HomeScreen.tsx
+    │   ├── CreateScreen.tsx
+    │   ├── DetailScreen.tsx
+    │   └── EditScreen.tsx
+    ├── 📁components/             → componentes reutilizables con Props y TypeScript
+    │   ├── Buscador.tsx
+    │   ├── Button.tsx
+    │   └── CardSolicitud.tsx
+    └── 📁navigation/
+        └── AppNavigator.tsx    → configuración de rutas con React Navigation
 ```
 
 ### Principios aplicados
-- Los **modelos** son puros — no dependen de ningún framework
-- Los **casos de uso** contienen las reglas de negocio — las pantallas no deciden el id, la fecha ni el estado inicial
-- Los **hooks personalizados** encapsulan el estado del formulario y las validaciones fuera de la UI
-- Los **componentes** solo muestran datos — sin lógica de negocio
-- Los **validators** son independientes — reutilizables en cualquier pantalla o hook
-- Los **labels y colores** están centralizados — un solo lugar para cambiar la presentación
+- **Domain** contiene la lógica de negocio pura — `models` y `usecases` no dependen de React ni de ningún framework, funcionarían igual en cualquier entorno de TypeScript
+- **Infrastructure** es el puente entre el dominio y la UI — `context` y `hooks` usan React (`useState`, `useReducer`, `useContext`) para conectar la lógica con los componentes
+- **Presentation** solo se encarga de lo visual — `screens` y `components` consumen los hooks y el context, sin contener lógica de negocio propia
+- Los casos de uso deciden las reglas — las pantallas no determinan el id, la fecha ni el estado inicial de una solicitud
+- Los labels y colores están centralizados en `constants.ts` — un solo lugar para cambiar la presentación
 
 ### Hooks utilizados
 - `useState` — manejo de formularios y errores
