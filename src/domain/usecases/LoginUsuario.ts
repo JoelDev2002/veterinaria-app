@@ -1,5 +1,5 @@
 import { LoginCredenciales, Usuario } from "../models/Usuario";
-import { PASSWORD_SIMULADA, USUARIO_SIMULADO } from "../utils/constants";
+import { PASSWORD_SIMULADA, USUARIO_SIMULADO } from "../../infrastructure/utils/constants";
 
 
 

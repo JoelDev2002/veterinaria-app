@@ -1,18 +1,17 @@
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { Pantallas } from "../navigation/AppNavigator";
-import { ActivityIndicator, Image, ImageBackground, StatusBar, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
+import { ActivityIndicator, Image, ImageBackground, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 import { useLoginForm } from "../../infrastructure/hooks/useLoginForm";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 
-type LoginScreenProps = NativeStackScreenProps<Pantallas, "Login">;
+type LoginScreenProps = Readonly<NativeStackScreenProps<Pantallas, "Login">>;
 export function LoginScreen({navigation}: LoginScreenProps){
 
   const {credenciales,errorGeneral,errores,isLoading,handleChange,handleSubmit}= useLoginForm(()=> (navigation.navigate('Home')))
 
   return(
     <SafeAreaView style={styles.container} edges={['top']}>
-      <StatusBar barStyle="light-content" />
 
       {/* Header placeholder */}
       <ImageBackground source={require("../../assets/portada.webp")} resizeMode="cover" style={styles.imagePortada}>

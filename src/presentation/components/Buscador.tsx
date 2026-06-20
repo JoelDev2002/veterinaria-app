@@ -3,8 +3,8 @@ import { StyleSheet } from "react-native";
 
 
 interface BuscadorProps{
-  value:string,
-  onChangeText:(texto: string) => void
+  readonly value:string,
+  readonly onChangeText:(texto: string) => void
 }
 
 export default function Buscador({value, onChangeText}: BuscadorProps) {

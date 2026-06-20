@@ -1,41 +1,26 @@
-import {
-  Alert,
-  ScrollView,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { Pantallas } from "../navigation/AppNavigator";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { useSolicitudes } from "../../infrastructure/context/SolicitudContext";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { TextInput } from "react-native-paper";
-import {
-  COLOR_ESTADO,
-  COLOR_PRIORIDAD,
-  ESTADOS,
-  ESTADOS_LABELS,
-  PRIORIDADES,
-  PRIORIDADES_LABELS,
-} from "../../infrastructure/utils/constants";
+import { COLOR_ESTADO, COLOR_PRIORIDAD, ESTADOS, ESTADOS_LABELS, PRIORIDADES, PRIORIDADES_LABELS } from "../../infrastructure/utils/constants";
 
 import { useEditSolicitudForm } from "../../infrastructure/hooks/useEditSolicitudForm";
 
-type EditScreenProps = NativeStackScreenProps<Pantallas, "Edit">;
+type EditScreenProps = Readonly <NativeStackScreenProps<Pantallas, "Edit">>;
 
-export default function EditScreen({ route, navigation }: EditScreenProps) {
+export default function EditScreen({ route, navigation }:  EditScreenProps) {
   const { solicitudId } = route.params;
 
   const { solicitudes} = useSolicitudes();
 
   const solicitud = solicitudes.find((s) => s.id === solicitudId);
 
-  if (!solicitud) return <Text>No encontrada</Text>;
 
   const {form,handleGuardar,handleChange,handleEliminar} = useEditSolicitudForm(solicitud,() => (navigation.navigate("Home")))
 
-  
+  if (!solicitud) return <Text>No encontrada</Text>;
 
   return (
     <ScrollView style={styles.contenedor}>

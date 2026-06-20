@@ -2,9 +2,9 @@ import { useState } from "react";
 import { Estado, Prioridad, Solicitud } from "../../domain/models/Solicitud";
 import { validarDescripcion } from "../utils/validators";
 import { Alert } from "react-native";
-import { editarSolicitud } from "../usecases/EditarSolicitud";
-import { useSolicitudes } from "../../context/SolicitudContext";
-import { puedeEliminarSolicitud } from "../usecases/EliminarSolicitud";
+import { editarSolicitud } from "../../domain/usecases/EditarSolicitud";
+import { useSolicitudes } from "../../infrastructure/context/SolicitudContext";
+import { puedeEliminarSolicitud } from "../../domain/usecases/EliminarSolicitud";
 
 interface EditarForm{
   estado: Estado,
@@ -12,14 +12,14 @@ interface EditarForm{
   descripcion: string,
 }
 
-export const useEditSolicitudForm=(solicitud:Solicitud,onSuccess: ()=> void)=>{
+export const useEditSolicitudForm=(solicitud:Solicitud | undefined,onSuccess: ()=> void)=>{
 
   const {editar, eliminar} = useSolicitudes()
 
   const [form, setForm] = useState<EditarForm>({
-    estado: solicitud.estado,
-    prioridad: solicitud.prioridad,
-    descripcion: solicitud.descripcion,
+    estado: solicitud?.estado ?? Estado.PENDIENTE,
+    prioridad: solicitud?.prioridad ?? Prioridad.BAJA,
+    descripcion: solicitud?.descripcion ?? "",
   })
 
   const handleChange=(campo: keyof EditarForm, valor: string)=>{
@@ -27,6 +27,7 @@ export const useEditSolicitudForm=(solicitud:Solicitud,onSuccess: ()=> void)=>{
   }
 
   const handleGuardar = () => {
+      if (!solicitud) return;
       const errorDescripcion = validarDescripcion(form.descripcion);
       if (errorDescripcion) {
         Alert.alert("Error", errorDescripcion);
@@ -49,7 +50,8 @@ export const useEditSolicitudForm=(solicitud:Solicitud,onSuccess: ()=> void)=>{
     };
 
     const handleEliminar = () => {
-    if (!puedeEliminarSolicitud(solicitud)) {
+      if (!solicitud) return;
+      if (!puedeEliminarSolicitud(solicitud)) {
       Alert.alert(
         "No permitido",
         "No puedes eliminar una solicitud con estado 'en atención'",
