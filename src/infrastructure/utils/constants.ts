@@ -1,6 +1,6 @@
-import { Estado, Prioridad, TipoServicio } from "../models/Solicitud";
+import { Estado, Prioridad, TipoServicio } from "../../domain/models/Solicitud";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import { Usuario } from "../models/Usuario";
+import { Usuario } from "../../domain/models/Usuario";
 
 export const ESTADOS = Object.values(Estado);
 // → ['PENDIENTE', 'EN_ATENCION', 'FINALIZADO']

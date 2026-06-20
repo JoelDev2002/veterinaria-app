@@ -1,8 +1,9 @@
 import { useState } from "react";
-import { Prioridad, TipoServicio } from "../models/Solicitud";
+import { Prioridad, TipoServicio } from "../../domain/models/Solicitud";
 import { validarDescripcion, validarMascota, validarNombre, validarSeleccion, validarTelefono } from "../utils/validators";
-import { crearSolicitud } from "../usecases/CrearSolicitud";
 import { useSolicitudes } from "../context/SolicitudContext";
+import { crearSolicitud } from "../../domain/usecases/CrearSolicitud";
+
 
 interface CrearSolicitudForm {
   clienteNombre: string;

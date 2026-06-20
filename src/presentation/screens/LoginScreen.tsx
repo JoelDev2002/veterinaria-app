@@ -1,7 +1,7 @@
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { Pantallas } from "../navigation/AppNavigator";
 import { ActivityIndicator, Image, ImageBackground, StatusBar, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
-import { useLoginForm } from "../hooks/useLoginForm";
+import { useLoginForm } from "../../infrastructure/hooks/useLoginForm";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 

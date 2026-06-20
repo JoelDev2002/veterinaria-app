@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { Estado, Prioridad, Solicitud } from "../models/Solicitud";
+import { Estado, Prioridad, Solicitud } from "../../domain/models/Solicitud";
 import { validarDescripcion } from "../utils/validators";
 import { Alert } from "react-native";
 import { editarSolicitud } from "../usecases/EditarSolicitud";
-import { useSolicitudes } from "../context/SolicitudContext";
+import { useSolicitudes } from "../../context/SolicitudContext";
 import { puedeEliminarSolicitud } from "../usecases/EliminarSolicitud";
 
 interface EditarForm{

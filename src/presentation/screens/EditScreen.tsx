@@ -8,10 +8,9 @@ import {
 } from "react-native";
 import { Pantallas } from "../navigation/AppNavigator";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { useSolicitudes } from "../context/SolicitudContext";
+import { useSolicitudes } from "../../infrastructure/context/SolicitudContext";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { TextInput } from "react-native-paper";
-import { useState } from "react";
 import {
   COLOR_ESTADO,
   COLOR_PRIORIDAD,
@@ -19,11 +18,9 @@ import {
   ESTADOS_LABELS,
   PRIORIDADES,
   PRIORIDADES_LABELS,
-} from "../utils/constants";
-import { editarSolicitud } from "../usecases/EditarSolicitud";
-import { puedeEliminarSolicitud } from "../usecases/EliminarSolicitud";
-import { validarDescripcion } from "../utils/validators";
-import { useEditSolicitudForm } from "../hooks/useEditSolicitudForm";
+} from "../../infrastructure/utils/constants";
+
+import { useEditSolicitudForm } from "../../infrastructure/hooks/useEditSolicitudForm";
 
 type EditScreenProps = NativeStackScreenProps<Pantallas, "Edit">;
 

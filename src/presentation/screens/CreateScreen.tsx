@@ -1,10 +1,10 @@
 import { StyleSheet, Text, View, TouchableOpacity, ScrollView, KeyboardAvoidingView} from "react-native";
 import { Button, TextInput } from "react-native-paper";
-import { COLOR_PRIORIDAD, PRIORIDADES, TIPOS_SERVICIO } from "../utils/constants";
+import { COLOR_PRIORIDAD, PRIORIDADES, TIPOS_SERVICIO } from "../../infrastructure/utils/constants";
 import { Picker } from "@react-native-picker/picker";
 import { Pantallas } from "../navigation/AppNavigator";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { useCrearSolicitudForm } from "../hooks/useCrearSolicitudForm";
+import { useCrearSolicitudForm } from "../../infrastructure/hooks/useCrearSolicitudForm";
 
 
 type createScreenProps = NativeStackScreenProps<Pantallas, "Create">;

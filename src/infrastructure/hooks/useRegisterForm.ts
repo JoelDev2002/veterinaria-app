@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { RegisterCredenciales } from "../models/Usuario";
+import { RegisterCredenciales } from "../../domain/models/Usuario";
 import { validarConfirmarPassword, validarEmail, validarNombre, validarPassword } from "../utils/validators";
 import { registerUsuario } from "../usecases/RegisterUsuario";
 
