@@ -13,6 +13,12 @@ interface SolicitudContextType {
 
 const SolicitudContext =createContext<SolicitudContextType>({} as SolicitudContextType)
 
+const fechaActual = () =>{
+  return new Date().toLocaleString("es-PE", {
+    timeZone: "America/Lima",
+  });
+}
+  
 
 const solicitudesIniciales: Solicitud[] = [
   {
@@ -24,9 +30,7 @@ const solicitudesIniciales: Solicitud[] = [
     prioridad: Prioridad.MEDIA,
     descripcion: 'La perrita lleva 2 días sin comer y está decaída.',
     estado: Estado.PENDIENTE,
-    fechaRegistro: new Date().toLocaleString("es-PE",{
-      timeZone:"America/Lima"
-    }),
+    fechaRegistro: fechaActual(),
   },
   {
     id: uuid.v4(),
@@ -37,9 +41,7 @@ const solicitudesIniciales: Solicitud[] = [
     prioridad: Prioridad.BAJA,
     descripcion: 'Vacuna anual antirrábica pendiente.',
     estado: Estado.EN_ATENCION,
-    fechaRegistro: new Date().toLocaleString("es-PE",{
-      timeZone:"America/Lima"
-    }),
+    fechaRegistro: fechaActual(),
   },
   {
     id: uuid.v4(),
@@ -50,9 +52,7 @@ const solicitudesIniciales: Solicitud[] = [
     prioridad: Prioridad.ALTA,
     descripcion: 'Gato se tragó un objeto, presenta vómitos.',
     estado: Estado.FINALIZADO,
-    fechaRegistro: new Date().toLocaleString("es-PE",{
-      timeZone:"America/Lima"
-    }),
+    fechaRegistro: fechaActual(),
   },
   {
     id: uuid.v4(),
@@ -63,7 +63,7 @@ const solicitudesIniciales: Solicitud[] = [
     prioridad: Prioridad.ALTA,
     descripcion: 'Fractura en pata trasera derecha por caída.',
     estado: Estado.PENDIENTE,
-    fechaRegistro: new Date().toLocaleString("es-PE", { timeZone: "America/Lima" }),
+    fechaRegistro: fechaActual(),
   },
   {
     id: uuid.v4(),
@@ -74,7 +74,7 @@ const solicitudesIniciales: Solicitud[] = [
     prioridad: Prioridad.MEDIA,
     descripcion: 'Picazón excesiva y pérdida de pelo en zonas localizadas.',
     estado: Estado.EN_ATENCION,
-    fechaRegistro: new Date().toLocaleString("es-PE", { timeZone: "America/Lima" }),
+    fechaRegistro: fechaActual(),
   },
   {
     id: uuid.v4(),
@@ -85,7 +85,7 @@ const solicitudesIniciales: Solicitud[] = [
     prioridad: Prioridad.BAJA,
     descripcion: 'Refuerzo de vacuna triple felina.',
     estado: Estado.FINALIZADO,
-    fechaRegistro: new Date().toLocaleString("es-PE", { timeZone: "America/Lima" }),
+    fechaRegistro: fechaActual(),
   },
   {
     id: uuid.v4(),
@@ -96,7 +96,7 @@ const solicitudesIniciales: Solicitud[] = [
     prioridad: Prioridad.ALTA,
     descripcion: 'Dificultad para respirar y encías pálidas.',
     estado: Estado.PENDIENTE,
-    fechaRegistro: new Date().toLocaleString("es-PE", { timeZone: "America/Lima" }),
+    fechaRegistro: fechaActual(),
   },
   {
     id: uuid.v4(),
@@ -107,7 +107,7 @@ const solicitudesIniciales: Solicitud[] = [
     prioridad: Prioridad.MEDIA,
     descripcion: 'Cojea intermitentemente desde hace una semana.',
     estado: Estado.EN_ATENCION,
-    fechaRegistro: new Date().toLocaleString("es-PE", { timeZone: "America/Lima" }),
+    fechaRegistro: fechaActual(),
   },
   {
     id: uuid.v4(),
@@ -118,7 +118,7 @@ const solicitudesIniciales: Solicitud[] = [
     prioridad: Prioridad.ALTA,
     descripcion: 'Quiste en glándula mamaria que ha crecido rápidamente.',
     estado: Estado.PENDIENTE,
-    fechaRegistro: new Date().toLocaleString("es-PE", { timeZone: "America/Lima" }),
+    fechaRegistro: fechaActual(),
   },
   {
     id: uuid.v4(),
@@ -129,7 +129,7 @@ const solicitudesIniciales: Solicitud[] = [
     prioridad: Prioridad.BAJA,
     descripcion: 'Primera vacuna contra la leucemia felina.',
     estado: Estado.FINALIZADO,
-    fechaRegistro: new Date().toLocaleString("es-PE", { timeZone: "America/Lima" }),
+    fechaRegistro: fechaActual(),
   },
   {
     id: uuid.v4(),
@@ -140,7 +140,7 @@ const solicitudesIniciales: Solicitud[] = [
     prioridad: Prioridad.ALTA,
     descripcion: 'Convulsiones repetitivas, pérdida de conciencia.',
     estado: Estado.PENDIENTE,
-    fechaRegistro: new Date().toLocaleString("es-PE", { timeZone: "America/Lima" }),
+    fechaRegistro: fechaActual(),
   },
   {
     id: uuid.v4(),
@@ -151,7 +151,7 @@ const solicitudesIniciales: Solicitud[] = [
     prioridad: Prioridad.MEDIA,
     descripcion: 'Vómitos esporádicos y falta de apetito por 3 días.',
     estado: Estado.EN_ATENCION,
-    fechaRegistro: new Date().toLocaleString("es-PE", { timeZone: "America/Lima" }),
+    fechaRegistro: fechaActual(),
   },
 ];
 
