@@ -13,7 +13,7 @@ interface CrearSolicitudInput {
 export const crearSolicitud = (input: CrearSolicitudInput) => {
 
       return{
-      id: uuid.v4() as string,
+      id: uuid.v4(),
       fechaRegistro: new Date().toLocaleString("es-PE",{
       timeZone:"America/Lima"
     }),

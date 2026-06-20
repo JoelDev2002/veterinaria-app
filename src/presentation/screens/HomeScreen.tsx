@@ -5,9 +5,9 @@ import Buscador from "../components/Buscador";
 import { ESTADOS_LABELS, FILTROS_ESTADO } from "../../infrastructure/utils/constants";
 import { useSolicitudes } from "../../infrastructure/context/SolicitudContext";
 import { useLayoutEffect, useState } from "react";
-import { IconButton } from "react-native-paper";
 import { Pantallas } from "../navigation/AppNavigator";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import BotonAgregar from "../components/BotonAgregar";
 
 type HomeScreenProps = NativeStackScreenProps<Pantallas, "Home">;
 
@@ -15,17 +15,12 @@ const HomeScreen= ({navigation}: HomeScreenProps) => {
 
   const [textoBusqueda,setTextoBusqueda]=useState<string>("");
 
+  function renderBotonAgregar(navigation: HomeScreenProps['navigation']) {
+  return <BotonAgregar onPress={() => navigation.navigate("Create")} />
+}
   useLayoutEffect(()=>{
     navigation.setOptions({
-      headerRight:()=>(
-          <IconButton
-          icon="plus"
-          iconColor="#a8dadc"
-          size={25}
-          style={styles.agregar}
-          onPress={()=>navigation.navigate("Create")}
-          />
-        )
+      headerRight: ()=> renderBotonAgregar(navigation)
     })
   },[navigation])
 
@@ -116,16 +111,13 @@ const styles = StyleSheet.create({
     color: "#020202",
     fontSize: 16,
   },
-  agregar:{
-    backgroundColor:"#1A1A1A",
-  },
   filtroScroll: {
-  flexGrow: 0,
-  flexShrink: 0,
-},
-filtroEstadoContenedor: {
-  alignItems: 'center',
-},
+    flexGrow: 0,
+    flexShrink: 0,
+  },
+  filtroEstadoContenedor: {
+    alignItems: 'center',
+  },
   filtroEstado:{
     flexDirection:"row",
     paddingHorizontal:10,

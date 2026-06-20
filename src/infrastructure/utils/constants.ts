@@ -3,7 +3,7 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { Usuario } from "../../domain/models/Usuario";
 
 export const ESTADOS = Object.values(Estado);
-// → ['PENDIENTE', 'EN_ATENCION', 'FINALIZADO']
+
 
 export const FILTROS_ESTADO =[
   "TODOS",
@@ -18,7 +18,7 @@ export const ESTADOS_LABELS : Record<string,string> = {
 }
 
 export const PRIORIDADES = Object.values(Prioridad);
-// → ['BAJA', 'MEDIA', 'ALTA']
+
 
 export const PRIORIDADES_LABELS : Record<Prioridad,string> = {
   [Prioridad.BAJA]:'BAJA',
@@ -27,7 +27,6 @@ export const PRIORIDADES_LABELS : Record<Prioridad,string> = {
 }
 
 export const TIPOS_SERVICIO = Object.values(TipoServicio);
-// → ['Consulta', 'Vacunación', 'Emergencia', 'Grooming']
 
 export const TIPOS_SERVICIO_LABELS: Record<string,string> = {
   [TipoServicio.CONSULTA]:'Consulta',
@@ -42,7 +41,7 @@ export const COLOR_ESTADO: Record<Estado, string> = {
   [Estado.FINALIZADO]: '#0F6E56',
 };
 
-// Colores por prioridad
+
 export const COLOR_PRIORIDAD: Record<Prioridad, string> = {
   [Prioridad.BAJA]: '#6B7280',
   [Prioridad.MEDIA]: '#F59E0B',
@@ -51,7 +50,7 @@ export const COLOR_PRIORIDAD: Record<Prioridad, string> = {
 
 
 type IconName = React.ComponentProps<typeof MaterialCommunityIcons>["name"];
-// Iconos por tipo de servicio (usarás esto con una librería de íconos)
+
 export const ICONO_SERVICIO: Record<TipoServicio, IconName> = {
   [TipoServicio.CONSULTA]: 'medical-bag',
   [TipoServicio.VACUNACION]: 'needle',

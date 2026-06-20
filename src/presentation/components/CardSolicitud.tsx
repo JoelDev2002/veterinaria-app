@@ -1,5 +1,5 @@
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import { ImageBackground, StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import { Card, Chip } from "react-native-paper";
 import { Solicitud } from "../../domain/models/Solicitud";
 import { COLOR_ESTADO, COLOR_PRIORIDAD, ESTADOS_LABELS, ICONO_SERVICIO, PRIORIDADES_LABELS } from "../../infrastructure/utils/constants";
@@ -9,7 +9,7 @@ import { Pantallas } from "../navigation/AppNavigator";
 import { LinearGradient } from "expo-linear-gradient";
 
 
-export default function CardSolicitud ({solicitud}: {solicitud: Solicitud}) {
+export default function CardSolicitud ({solicitud}: {readonly solicitud: Solicitud}) {
 
   const navigation = useNavigation<NativeStackNavigationProp<Pantallas>>();
   return(
@@ -20,8 +20,8 @@ export default function CardSolicitud ({solicitud}: {solicitud: Solicitud}) {
       >
         <LinearGradient
         colors={["#A8DADC","#F5F5F5", "#e0e0da"]}
-        start={{x:0.0, y:0.0}}
-        end={{x:1.0, y:1.0}}
+        start={{x:0, y:0}}
+        end={{x:1, y:1}}
         style={[styles.bgGradient]}>
           <Card.Content style={{paddingHorizontal: 0}}>
         <View style={styles.header}>

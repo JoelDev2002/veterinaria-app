@@ -3,12 +3,12 @@ import { StyleSheet } from "react-native";
 import { Button as PaperButton } from "react-native-paper";
 
 type ButtonProps={
-  texto : string
-  activo ?: boolean
-  onPress : () => void
+  readonly texto : string
+  readonly activo ?: boolean
+  readonly onPress : () => void
 }
 
-export default function Button({texto, activo=false, onPress}:ButtonProps){
+export default function Button({texto, activo=false, onPress}: ButtonProps){
 
   
 

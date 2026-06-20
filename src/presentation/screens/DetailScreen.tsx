@@ -5,7 +5,6 @@ import { useSolicitudes } from "../../infrastructure/context/SolicitudContext";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { Chip } from "react-native-paper";
 import { COLOR_ESTADO, COLOR_PRIORIDAD, ESTADOS_LABELS, ICONO_SERVICIO } from "../../infrastructure/utils/constants";
-import { useState } from "react";
 
 
 type detailScreenProps = NativeStackScreenProps<Pantallas, "Detail">;

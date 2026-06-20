@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useContext, useEffect, useReducer } from "react";
+import { createContext, ReactNode, useContext, useMemo, useReducer } from "react";
 import { Estado, Prioridad, Solicitud, TipoServicio } from "../../domain/models/Solicitud";
 import { solicitudReducer } from "./solicitudReducer";
 import uuid from "react-native-uuid"
@@ -16,7 +16,7 @@ const SolicitudContext =createContext<SolicitudContextType>({} as SolicitudConte
 
 const solicitudesIniciales: Solicitud[] = [
   {
-    id: uuid.v4() as string,
+    id: uuid.v4(),
     clienteNombre: 'María García',
     telefono: '987654321',
     mascotaNombre: 'Luna',
@@ -29,7 +29,7 @@ const solicitudesIniciales: Solicitud[] = [
     }),
   },
   {
-    id: uuid.v4() as string,
+    id: uuid.v4(),
     clienteNombre: 'Carlos López',
     telefono: '912345678',
     mascotaNombre: 'Rocky',
@@ -42,7 +42,7 @@ const solicitudesIniciales: Solicitud[] = [
     }),
   },
   {
-    id: uuid.v4() as string,
+    id: uuid.v4(),
     clienteNombre: 'Ana Torres',
     telefono: '956789012',
     mascotaNombre: 'Michi',
@@ -55,7 +55,7 @@ const solicitudesIniciales: Solicitud[] = [
     }),
   },
   {
-    id: uuid.v4() as string,
+    id: uuid.v4(),
     clienteNombre: 'Luis Fernández',
     telefono: '923456789',
     mascotaNombre: 'Max',
@@ -66,7 +66,7 @@ const solicitudesIniciales: Solicitud[] = [
     fechaRegistro: new Date().toLocaleString("es-PE", { timeZone: "America/Lima" }),
   },
   {
-    id: uuid.v4() as string,
+    id: uuid.v4(),
     clienteNombre: 'Roxana Méndez',
     telefono: '934567890',
     mascotaNombre: 'Nala',
@@ -77,7 +77,7 @@ const solicitudesIniciales: Solicitud[] = [
     fechaRegistro: new Date().toLocaleString("es-PE", { timeZone: "America/Lima" }),
   },
   {
-    id: uuid.v4() as string,
+    id: uuid.v4(),
     clienteNombre: 'Jorge Ramírez',
     telefono: '945678901',
     mascotaNombre: 'Toby',
@@ -88,7 +88,7 @@ const solicitudesIniciales: Solicitud[] = [
     fechaRegistro: new Date().toLocaleString("es-PE", { timeZone: "America/Lima" }),
   },
   {
-    id: uuid.v4() as string,
+    id: uuid.v4(),
     clienteNombre: 'Patricia Cáceres',
     telefono: '956789012',
     mascotaNombre: 'Kiara',
@@ -99,7 +99,7 @@ const solicitudesIniciales: Solicitud[] = [
     fechaRegistro: new Date().toLocaleString("es-PE", { timeZone: "America/Lima" }),
   },
   {
-    id: uuid.v4() as string,
+    id: uuid.v4(),
     clienteNombre: 'Andrés Huamán',
     telefono: '967890123',
     mascotaNombre: 'Simba',
@@ -110,7 +110,7 @@ const solicitudesIniciales: Solicitud[] = [
     fechaRegistro: new Date().toLocaleString("es-PE", { timeZone: "America/Lima" }),
   },
   {
-    id: uuid.v4() as string,
+    id: uuid.v4(),
     clienteNombre: 'Veronica Ríos',
     telefono: '978901234',
     mascotaNombre: 'Bella',
@@ -121,7 +121,7 @@ const solicitudesIniciales: Solicitud[] = [
     fechaRegistro: new Date().toLocaleString("es-PE", { timeZone: "America/Lima" }),
   },
   {
-    id: uuid.v4() as string,
+    id: uuid.v4(),
     clienteNombre: 'Daniela Paredes',
     telefono: '989012345',
     mascotaNombre: 'Coco',
@@ -132,7 +132,7 @@ const solicitudesIniciales: Solicitud[] = [
     fechaRegistro: new Date().toLocaleString("es-PE", { timeZone: "America/Lima" }),
   },
   {
-    id: uuid.v4() as string,
+    id: uuid.v4(),
     clienteNombre: 'Ricardo Soto',
     telefono: '990123456',
     mascotaNombre: 'Thor',
@@ -143,7 +143,7 @@ const solicitudesIniciales: Solicitud[] = [
     fechaRegistro: new Date().toLocaleString("es-PE", { timeZone: "America/Lima" }),
   },
   {
-    id: uuid.v4() as string,
+    id: uuid.v4(),
     clienteNombre: 'Gabriela Quiroz',
     telefono: '901234567',
     mascotaNombre: 'Lola',
@@ -157,14 +157,8 @@ const solicitudesIniciales: Solicitud[] = [
 
 export const SolicitudProvider = ({ children }: { children: ReactNode }) => {
 
-  const [solicitudes, dispatch] = useReducer(solicitudReducer, []);
+  const [solicitudes, dispatch] = useReducer(solicitudReducer, solicitudesIniciales);
 
-
-  useEffect(() => {
-    solicitudesIniciales.forEach(s =>
-      dispatch({ type: 'AGREGAR', payload: s })
-    );
-  }, []);
 
   const agregar = (solicitud: Solicitud) =>
     dispatch({ type: 'AGREGAR', payload: solicitud });
@@ -178,17 +172,16 @@ export const SolicitudProvider = ({ children }: { children: ReactNode }) => {
   const cambiarEstado = (id: string, estado: Estado) =>
     dispatch({ type: 'CAMBIAR_ESTADO', payload: { id, estado } });
 
+
+  const value = useMemo(
+    () =>({ solicitudes, agregar, editar, eliminar, cambiarEstado }),
+    [solicitudes]
+  );
   return (
 
-    <SolicitudContext.Provider
-      value={{ solicitudes, agregar, editar, eliminar, cambiarEstado }}
-    >
+    <SolicitudContext.Provider value={value}>
       {children}
     </SolicitudContext.Provider>
   );
 };
-
-// 5. HOOK PERSONALIZADO — para no repetir useContext en cada pantalla
-//    En lugar de: const ctx = useContext(SolicitudContext)
-//    Escribes:     const { solicitudes, agregar } = useSolicitudes()
 export const useSolicitudes = () => useContext(SolicitudContext);
