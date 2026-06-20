@@ -32,10 +32,10 @@ export const validarSeleccion = (valor: string, campo: string): string | null =>
 
 
 export const validarEmail =(valor : string): string | null =>{
-  if (!valor.trim()) return 'El email es obligatorio';
-  
-  const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  if(!regex.test(valor.trim())) return 'el email no es valido';
+  const email = valor.trim();
+  if (!email) return 'El email es obligatorio';
+
+  if(!email.includes("@") || !email.includes("."))return 'el email no es valido';
 
   return null  
 } 
