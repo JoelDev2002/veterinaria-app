@@ -1,5 +1,5 @@
 import { createContext, ReactNode, useContext, useEffect, useReducer } from "react";
-import { Estado, Prioridad, Solicitud, TipoServicio } from "../models/Solicitud";
+import { Estado, Prioridad, Solicitud, TipoServicio } from "../../domain/models/Solicitud";
 import { solicitudReducer } from "./solicitudReducer";
 import uuid from "react-native-uuid"
 

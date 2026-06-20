@@ -1,4 +1,4 @@
-import { Estado, Solicitud } from "../models/Solicitud";
+import { Estado, Solicitud } from "../../domain/models/Solicitud";
 
 export type SolicitudAction =
   | { type: 'AGREGAR'; payload: Solicitud }

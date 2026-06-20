@@ -1,11 +1,12 @@
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import { StyleSheet, Text, View } from "react-native";
+import { ImageBackground, StyleSheet, Text, View } from "react-native";
 import { Card, Chip } from "react-native-paper";
-import { Solicitud } from "../models/Solicitud";
-import { COLOR_ESTADO, COLOR_PRIORIDAD, ESTADOS_LABELS, ICONO_SERVICIO, PRIORIDADES_LABELS } from "../utils/constants";
+import { Solicitud } from "../../domain/models/Solicitud";
+import { COLOR_ESTADO, COLOR_PRIORIDAD, ESTADOS_LABELS, ICONO_SERVICIO, PRIORIDADES_LABELS } from "../../infrastructure/utils/constants";
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { Pantallas } from "../navigation/AppNavigator";
+import { LinearGradient } from "expo-linear-gradient";
 
 
 export default function CardSolicitud ({solicitud}: {solicitud: Solicitud}) {
@@ -17,13 +18,18 @@ export default function CardSolicitud ({solicitud}: {solicitud: Solicitud}) {
       elevation={2}
       onPress={() => navigation.navigate("Detail",{solicitudId: solicitud.id})}
       >
-      <Card.Content>
+        <LinearGradient
+        colors={["#A8DADC","#F5F5F5", "#e0e0da"]}
+        start={{x:0.0, y:0.0}}
+        end={{x:1.0, y:1.0}}
+        style={[styles.bgGradient]}>
+          <Card.Content style={{paddingHorizontal: 0}}>
         <View style={styles.header}>
           <Text style={styles.nombre}>
             {solicitud.clienteNombre}
           </Text>
 
-          <Chip compact textStyle={{color: "#fff",fontWeight:"bold"}} style={{backgroundColor:COLOR_ESTADO[solicitud.estado]}}>
+          <Chip compact textStyle={{color: "#fff",fontWeight:"bold"}} style={[{backgroundColor:COLOR_ESTADO[solicitud.estado]}]}>
             {ESTADOS_LABELS[solicitud.estado]}
           </Chip>
         </View>
@@ -72,6 +78,7 @@ export default function CardSolicitud ({solicitud}: {solicitud: Solicitud}) {
           </View>
         </View>
       </Card.Content>
+        </LinearGradient>
     </Card>
   )
 
@@ -80,11 +87,15 @@ export default function CardSolicitud ({solicitud}: {solicitud: Solicitud}) {
 const styles = StyleSheet.create({
   card: {
     margin: 16,
-    borderRadius: 12,
-    backgroundColor: "#f5f5f5",
+    borderRadius: 20,
     // width:350,
     // height:180
   },
+  bgGradient:{
+    padding:15,
+    borderRadius:20,
+  },
+
 
   header: {
     flexDirection: "row",
