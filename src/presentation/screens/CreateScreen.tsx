@@ -4,7 +4,7 @@ import { COLOR_PRIORIDAD, PRIORIDADES, TIPOS_SERVICIO } from "../../infrastructu
 import { Picker } from "@react-native-picker/picker";
 import { Pantallas } from "../navigation/AppNavigator";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { useCrearSolicitudForm } from "../../infrastructure/hooks/useCrearSolicitudForm";
+import { useCrearSolicitudForm } from "../hooks/useCrearSolicitudForm";
 
 
 type createScreenProps = NativeStackScreenProps<Pantallas, "Create">;

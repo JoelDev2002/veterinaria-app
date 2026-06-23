@@ -1,6 +1,6 @@
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { Pantallas } from "../navigation/AppNavigator";
-import { useRegisterForm } from "../../infrastructure/hooks/useRegisterForm";
+import { useRegisterForm } from "../hooks/useRegisterForm";
 import { ActivityIndicator, Image, ImageBackground, KeyboardAvoidingView, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 
 type LoginScreenProps = NativeStackScreenProps<Pantallas, "Register">;

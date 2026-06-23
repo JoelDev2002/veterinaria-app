@@ -6,7 +6,7 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { TextInput } from "react-native-paper";
 import { COLOR_ESTADO, COLOR_PRIORIDAD, ESTADOS, ESTADOS_LABELS, PRIORIDADES, PRIORIDADES_LABELS } from "../../infrastructure/utils/constants";
 
-import { useEditSolicitudForm } from "../../infrastructure/hooks/useEditSolicitudForm";
+import { useEditSolicitudForm } from "../hooks/useEditSolicitudForm";
 
 type EditScreenProps = Readonly <NativeStackScreenProps<Pantallas, "Edit">>;
 
