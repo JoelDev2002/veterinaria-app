@@ -143,29 +143,29 @@ src/
 │   ├── 📁context/
 │   │   ├── SolicitudContext.tsx   → provee el estado global a toda la app
 │   │   └── solicitudReducer.ts    → maneja AGREGAR, EDITAR, ELIMINAR, CAMBIAR_ESTADO
+│   └── 📁utils/
+│       ├── constants.ts       → colores, iconos y labels centralizados
+│       └── validators.ts      → validaciones reutilizables independientes de la UI
+│
+├── 📁presentation/              → Todo lo visual: pantallas, componentes y navegación
+│   ├── 📁screens/
+│   │   ├── LoginScreen.tsx
+│   │   ├── RegisterScreen.tsx
+│   │   ├── HomeScreen.tsx
+│   │   ├── CreateScreen.tsx
+│   │   ├── DetailScreen.tsx
+│   │   └── EditScreen.tsx
+│   ├── 📁components/             → componentes reutilizables con Props y TypeScript
+│   │   ├── Buscador.tsx
+│   │   ├── Button.tsx
+│   │   └── CardSolicitud.tsx
+│   ├── 📁navigation/
+│   │   └── AppNavigator.tsx    → configuración de rutas con React Navigation
 │   ├── 📁hooks/
 │   │   ├── useLoginForm.ts            → estado, validación y submit del login
 │   │   ├── useRegisterForm.ts         → estado, validación y submit del registro
 │   │   ├── useCrearSolicitudForm.ts   → estado y validación del formulario de crear
 │   │   └── useEditarSolicitudForm.ts  → estado, validación, editar y eliminar
-│   └── 📁utils/
-│       ├── constants.ts       → colores, iconos y labels centralizados
-│       └── validators.ts      → validaciones reutilizables independientes de la UI
-│
-└── 📁presentation/              → Todo lo visual: pantallas, componentes y navegación
-    ├── 📁screens/
-    │   ├── LoginScreen.tsx
-    │   ├── RegisterScreen.tsx
-    │   ├── HomeScreen.tsx
-    │   ├── CreateScreen.tsx
-    │   ├── DetailScreen.tsx
-    │   └── EditScreen.tsx
-    ├── 📁components/             → componentes reutilizables con Props y TypeScript
-    │   ├── Buscador.tsx
-    │   ├── Button.tsx
-    │   └── CardSolicitud.tsx
-    └── 📁navigation/
-        └── AppNavigator.tsx    → configuración de rutas con React Navigation
 ```
 
 ### Principios aplicados
