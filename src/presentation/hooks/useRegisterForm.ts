@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { RegisterCredenciales } from "../../domain/models/Usuario";
-import { validarConfirmarPassword, validarEmail, validarNombre, validarPassword } from "../utils/validators";
+import { validarConfirmarPassword, validarEmail, validarNombre, validarPassword } from "../../infrastructure/utils/validators";
 import { registerUsuario } from "../../domain/usecases/RegisterUsuario";
 
 interface RegisterFormErrors {

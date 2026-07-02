@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Prioridad, TipoServicio } from "../../domain/models/Solicitud";
-import { validarDescripcion, validarMascota, validarNombre, validarSeleccion, validarTelefono } from "../utils/validators";
-import { useSolicitudes } from "../context/SolicitudContext";
+import { validarDescripcion, validarMascota, validarNombre, validarSeleccion, validarTelefono } from "../../infrastructure/utils/validators";
+import { useSolicitudes } from "../../infrastructure/context/SolicitudContext";
 import { crearSolicitud } from "../../domain/usecases/CrearSolicitud";
 
 

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Estado, Prioridad, Solicitud } from "../../domain/models/Solicitud";
-import { validarDescripcion } from "../utils/validators";
+import { validarDescripcion } from "../../infrastructure/utils/validators";
 import { Alert } from "react-native";
 import { editarSolicitud } from "../../domain/usecases/EditarSolicitud";
 import { useSolicitudes } from "../../infrastructure/context/SolicitudContext";

@@ -14,9 +14,9 @@ export function LoginScreen({navigation}: LoginScreenProps){
     <SafeAreaView style={styles.container} edges={['top']}>
 
       {/* Header placeholder */}
-      <ImageBackground source={require("../../assets/portada.webp")} resizeMode="cover" style={styles.imagePortada}>
+      <ImageBackground source={require("../../../assets/portada.webp")} resizeMode="cover" style={styles.imagePortada}>
         <View style={styles.iconoCirculo}>
-          <Image source={require("../../assets/logo-vet.png")} style={styles.iconoImagen}/>
+          <Image source={require("../../../assets/logo-vet.png")} style={styles.iconoImagen}/>
         </View>
       </ImageBackground>
 

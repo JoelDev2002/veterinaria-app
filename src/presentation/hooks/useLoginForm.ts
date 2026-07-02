@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { LoginCredenciales } from "../../domain/models/Usuario";
-import { validarEmail, validarPassword } from "../utils/validators";
+import { validarEmail, validarPassword } from "../../infrastructure/utils/validators";
 import { loginUsuario } from "../../domain/usecases/LoginUsuario";
 
 interface LoginFormErrors{

@@ -17,9 +17,9 @@ export const RegisterScreen = ({ navigation }: LoginScreenProps) => {
     <ScrollView style={styles.container} contentContainerStyle={styles.content}>
 
       {/* Header */}
-      <ImageBackground source={require("../../assets/portada-register.jpg")} style={styles.header} resizeMode="contain">
+      <ImageBackground source={require("../../../assets/portada-register.jpg")} style={styles.header} resizeMode="contain">
         <View style={styles.iconoCirculo}>
-          <Image source={require("../../assets/logo-vet.png")} style={styles.iconoImage}/>
+          <Image source={require("../../../assets/logo-vet.png")} style={styles.iconoImage}/>
         </View>
         <Text style={styles.titulo}>Crear cuenta</Text>
         <Text style={styles.subtitulo}>Únete a nuestra clínica veterinaria</Text>
