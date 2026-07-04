@@ -1,7 +1,7 @@
 import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { Pantallas } from "../navigation/AppNavigator";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { useSolicitudes } from "../../infrastructure/context/SolicitudContext";
+import { useSolicitudes } from "../context/SolicitudContext";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { TextInput } from "react-native-paper";
 import { COLOR_ESTADO, COLOR_PRIORIDAD, ESTADOS, ESTADOS_LABELS, PRIORIDADES, PRIORIDADES_LABELS } from "../../infrastructure/utils/constants";
