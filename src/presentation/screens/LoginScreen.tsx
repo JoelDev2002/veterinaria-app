@@ -2,7 +2,7 @@ import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { Pantallas } from "../navigation/AppNavigator";
 import { ActivityIndicator, Image, ImageBackground, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 import { useLoginForm } from "../hooks/useLoginForm";
-import { SafeAreaView } from "react-native-safe-area-context";
+import { PasswordInput } from "../components/PasswordInput";
 
 
 type LoginScreenProps = Readonly<NativeStackScreenProps<Pantallas, "Login">>;
@@ -11,7 +11,7 @@ export function LoginScreen({navigation}: LoginScreenProps){
   const {credenciales,errorGeneral,errores,isLoading,handleChange,handleSubmit}= useLoginForm(()=> (navigation.navigate('Home')))
 
   return(
-    <SafeAreaView style={styles.container} edges={['top']}>
+    <View style={styles.container}>
 
       {/* Header placeholder */}
       <ImageBackground source={require("../../../assets/portada.webp")} resizeMode="cover" style={styles.imagePortada}>
@@ -20,6 +20,7 @@ export function LoginScreen({navigation}: LoginScreenProps){
         </View>
       </ImageBackground>
 
+      
       {/* Formulario */}
       <View style={styles.formulario}>
 
@@ -35,23 +36,16 @@ export function LoginScreen({navigation}: LoginScreenProps){
         {errores.email && <Text style={styles.errorCampo}>{errores.email}</Text>}
 
         <Text style={styles.label}>CONTRASEÑA</Text>
-        <View style={styles.passwordContainer}>
-          <TextInput
-            style={styles.inputPassword}
-            placeholder="••••••••"
-            placeholderTextColor="#aaa"
-            value={credenciales.password}
-            onChangeText={(valor) => handleChange('password', valor)}
-            secureTextEntry
-          />
-          <TouchableOpacity>
-            <Text style={styles.olvidaste}>¿Olvidaste tu contraseña?</Text>
-          </TouchableOpacity>
-        </View>
+        <PasswordInput 
+        value={credenciales.password}
+        onChangeText={(valor) => handleChange('password', valor)}
+        />
         {errores.password && <Text style={styles.errorCampo}>{errores.password}</Text>}
 
         {errorGeneral && <Text style={styles.errorGeneral}>{errorGeneral}</Text>}
-
+        <TouchableOpacity>
+          <Text style={styles.olvidaste}>¿Olvidaste tu contraseña?</Text>
+        </TouchableOpacity>
         <TouchableOpacity
           style={[styles.boton, isLoading && styles.botonDeshabilitado]}
           onPress={handleSubmit}
@@ -69,7 +63,7 @@ export function LoginScreen({navigation}: LoginScreenProps){
         </TouchableOpacity>
 
       </View>
-    </SafeAreaView>
+    </View>
   );
 }
 

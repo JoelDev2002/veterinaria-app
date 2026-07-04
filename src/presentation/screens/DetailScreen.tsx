@@ -1,7 +1,7 @@
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { Pantallas } from "../navigation/AppNavigator";
-import { useSolicitudes } from "../../infrastructure/context/SolicitudContext";
+import { useSolicitudes } from "../context/SolicitudContext";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { Chip } from "react-native-paper";
 import { COLOR_ESTADO, COLOR_PRIORIDAD, ESTADOS_LABELS, ICONO_SERVICIO } from "../../infrastructure/utils/constants";

@@ -1,13 +1,14 @@
-import { FlatList, ScrollView, StyleSheet, Text, View } from "react-native";
+import { Alert, FlatList, ScrollView, StyleSheet, Text, View } from "react-native";
 import CardSolicitud from "../components/CardSolicitud";
 import Button from "../components/Button";
 import Buscador from "../components/Buscador";
 import { ESTADOS_LABELS, FILTROS_ESTADO } from "../../infrastructure/utils/constants";
-import { useSolicitudes } from "../../infrastructure/context/SolicitudContext";
+import { useSolicitudes } from "../context/SolicitudContext";
 import { useLayoutEffect, useState } from "react";
 import { Pantallas } from "../navigation/AppNavigator";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import BotonAgregar from "../components/BotonAgregar";
+import BotonCerrarSesion from "../components/BotonCerrarSesion";
 
 type HomeScreenProps = NativeStackScreenProps<Pantallas, "Home">;
 
@@ -17,10 +18,37 @@ const HomeScreen= ({navigation}: HomeScreenProps) => {
 
   function renderBotonAgregar(navigation: HomeScreenProps['navigation']) {
   return <BotonAgregar onPress={() => navigation.navigate("Create")} />
-}
+  }
+
+  function renderBotonCerrarSesion(onPress: () => void) {
+    return <BotonCerrarSesion onPress={onPress} />
+  }
+  function handleCerrarSesion() {
+    Alert.alert(
+      "Cerrar sesión",
+    "¿Estás seguro que deseas cerrar sesión?",
+    [
+      {
+        text: "Cancelar",
+        style: "cancel",
+      },
+      {
+        text: "Cerrar sesión",
+        style: "destructive",
+        onPress: () => {
+          navigation.reset({
+            index: 0,
+            routes: [{ name: 'Login' }],
+          });
+        },
+      },
+    ]
+    )
+  }
   useLayoutEffect(()=>{
     navigation.setOptions({
-      headerRight: ()=> renderBotonAgregar(navigation)
+      headerRight: ()=> renderBotonAgregar(navigation),
+      headerLeft: () => renderBotonCerrarSesion(handleCerrarSesion)
     })
   },[navigation])
 
