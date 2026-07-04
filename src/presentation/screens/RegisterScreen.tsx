@@ -2,6 +2,7 @@ import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { Pantallas } from "../navigation/AppNavigator";
 import { useRegisterForm } from "../hooks/useRegisterForm";
 import { ActivityIndicator, Image, ImageBackground, KeyboardAvoidingView, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
+import { PasswordInput } from "../components/PasswordInput";
 
 type LoginScreenProps = NativeStackScreenProps<Pantallas, "Register">;
 
@@ -52,24 +53,18 @@ export const RegisterScreen = ({ navigation }: LoginScreenProps) => {
         {errores.email && <Text style={styles.errorCampo}>{errores.email}</Text>}
 
         <Text style={styles.label}>CONTRASEÑA</Text>
-        <TextInput
-          style={styles.input}
-          placeholder="Mínimo 6 caracteres"
-          placeholderTextColor="#aaa"
-          value={credenciales.password}
-          onChangeText={(valor) => handleChange('password', valor)}
-          secureTextEntry
+        <PasswordInput
+        value={credenciales.password}
+        onChangeText={(valor) => handleChange('password', valor)}
+        placeholder="Minimo 6 caracteres"
         />
         {errores.password && <Text style={styles.errorCampo}>{errores.password}</Text>}
 
         <Text style={styles.label}>CONFIRMAR CONTRASEÑA</Text>
-        <TextInput
-          style={styles.input}
-          placeholder="Repite tu contraseña"
-          placeholderTextColor="#aaa"
-          value={credenciales.confirmarPassword}
-          onChangeText={(valor) => handleChange('confirmarPassword', valor)}
-          secureTextEntry
+        <PasswordInput
+        value={credenciales.confirmarPassword}
+        onChangeText={(valor) => handleChange('confirmarPassword', valor)}
+        placeholder="Minimo 6 caracteres"
         />
         {errores.confirmarPassword && (
           <Text style={styles.errorCampo}>{errores.confirmarPassword}</Text>
@@ -105,11 +100,10 @@ const VERDE = '#3dbfaa';
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     backgroundColor: '#fff',
   },
   content: {
-    flexGrow: 1,
+    // flexGrow: 1,
   },
   header: {
     backgroundColor: '#f7f7f7',
