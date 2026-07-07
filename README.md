@@ -140,9 +140,6 @@ src/
 │       └── RegisterUsuario.ts     → simula el registro de usuario
 │
 ├── 📁infrastructure/            → Conecta el dominio con React: estado, hooks y utilidades
-│   ├── 📁context/
-│   │   ├── SolicitudContext.tsx   → provee el estado global a toda la app
-│   │   └── solicitudReducer.ts    → maneja AGREGAR, EDITAR, ELIMINAR, CAMBIAR_ESTADO
 │   └── 📁utils/
 │       ├── constants.ts       → colores, iconos y labels centralizados
 │       └── validators.ts      → validaciones reutilizables independientes de la UI
@@ -166,6 +163,10 @@ src/
 │   │   ├── useRegisterForm.ts         → estado, validación y submit del registro
 │   │   ├── useCrearSolicitudForm.ts   → estado y validación del formulario de crear
 │   │   └── useEditarSolicitudForm.ts  → estado, validación, editar y eliminar
+│   └── 📁context/
+│       ├── SolicitudContext.tsx   → provee el estado global a toda la app
+│       └── solicitudReducer.ts    → maneja AGREGAR, EDITAR, ELIMINAR, CAMBIAR_ESTADO
+
 ```
 
 ### Principios aplicados
